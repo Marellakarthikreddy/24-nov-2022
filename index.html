@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		body{
+			background-color: background-color: #ffffff;
+			background-image: linear-gradient(225deg, #ffffff 0%, #FF3CAC 1%, #ffffff 9%, #784BA0 28%, #ffffff 91%, #2B86C5 98%);
+			background-repeat: no-repeat;
+			height: 100vh;
+
+		}
+		#newdiv{
+			text-align: center;
+			margin-top: 17%;
+		}
+		#save{
+			padding:1% 2% 1% 2%;
+			border-radius:1rem;
+			font-weight: bold;
+
+		}
+		#password{
+			padding: 1% 2% 1% 2%;
+			border-radius:1rem;
+			font-weight: bold;
+		}
+		#button{
+			padding: 1% 2% 1% 1%;
+			border-radius:1rem;
+			background-color:goldenrod;
+			font-weight: bold;
+		}
+		#page{
+			color: blue;
+			margin-top: 12%;
+
+		}
+	</style>
+	<script type="text/javascript">
+		function submit()
+		{
+			var button=document.getElementById("save").value
+			var input=document.getElementById("password").value
+			fetch("http://localhost:4500/newData",{
+			method:"POST",
+			headers:{
+				"Content-Type":"application/json"
+			},
+			body:JSON.stringify({name:button,pin:input})
+		})
+		}
+		.then((res)=>{
+			console.log(res)
+			if(res.status===200)
+				alert("Data added")
+		})
+		.catch((err)=>{
+			alert(err)
+		})
+
+		
+	</script>
+</head>
+<body>
+	<div id="newdiv">
+		<h1 id="page">Registration page</h1>
+	<input id="save" type="text" placeholder="Enter text">
+	<p><input id="password" type="text" placeholder="Enter password"></p>
+	<button  id="button"onclick="submit()">submit</button>
+	</div>
+</body>
+</html>
